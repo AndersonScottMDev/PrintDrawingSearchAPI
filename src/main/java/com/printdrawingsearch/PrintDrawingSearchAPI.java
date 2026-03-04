@@ -11,10 +11,10 @@ import com.printdrawingsearch.exceptions.PrintDrawingNotFoundException;
  * Contains the "main" method for starting the PrintDrawingAPI
  */
 @SpringBootApplication
-public class FinalProjectPrintDrawings {
+public class PrintDrawingSearchAPI {
 
 	// Initialize a logger for the class
-	private static final Logger logger = LoggerFactory.getLogger(FinalProjectPrintDrawings.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(PrintDrawingSearchAPI.class.getName());
 
 	// private static final LogManager logManager = LogManager.getLogManager();
 
@@ -26,7 +26,7 @@ public class FinalProjectPrintDrawings {
 	 *                                       not found
 	 */
 	public static void main(String[] args) throws PrintDrawingNotFoundException {
-		SpringApplication.run(FinalProjectPrintDrawings.class, args);
+		SpringApplication.run(PrintDrawingSearchAPI.class, args);
 
 		logger.trace("Application is starting ................");
 

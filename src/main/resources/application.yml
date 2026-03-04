@@ -1,16 +1,39 @@
+server:
+  port: 8082
+
 spring:
   application:
-    name: PrintDrawingSearchAPI
+    name: PrintDrawingSearch
+
   datasource:
-    url: jdbc:mysql://${PROD_DB_HOST}:${PROD_DB_PORT}/${PROD_DB_NAME}
-    username: ${PROD_DB_USERNAME}
-    password: ${PROD_DB_PASSWORD}
+    url: jdbc:mysql://localhost:3306/printdrawingsdatabase?createDatabaseIfNotExist=true
+    username: root
+    password: five2one
     driver-class-name: com.mysql.cj.jdbc.Driver
     hikari:
       connection-timeout: 20000
       maximum-pool-size: 10
-  jpa:
+
+jpa:
+  hibernate:
+    ddl-auto: update # Change 'validate' to 'update' so Hibernate can create missing pieces
+  properties:
     hibernate:
-      ddl-auto: update
-    properties:
-      dialect: org.hibernate.dialect.MySQLDialect
+      # This is the correct Spring Boot 3 / Hibernate 6 property
+      id:
+        db_structure_naming_strategy: legacy
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    repair-on-migrate: true
+    # Ensures Flyway uses the same datasource defined above
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+
+# Add this to see the ACTUAL error if it fails again
+logging:
+  level:
+    org.springframework: ERROR
+    com.printdrawingsearch: DEBUG
