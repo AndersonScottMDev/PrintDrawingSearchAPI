@@ -42,7 +42,8 @@ public class RegistrationController {
 	 * @return a response indicating the result of the registration
 	 */
 	@PostMapping("/register/user")
-	@CrossOrigin(origins = "https://printsearchapp.scottmichaelandersondev.com")
+	@CrossOrigin(origins = {"https://printsearchapp.scottmichaelandersondev.com/api/register/user","https://printsearchapp" +
+			".scottmichaelandersondev.com"})
 	public ResponseEntity<String> createUser(@RequestBody MyUserDto myUserDto) {
 
 		logger.trace("Entered......createUser() ");
